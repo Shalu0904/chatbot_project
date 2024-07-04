@@ -1,0 +1,41 @@
+<!-- unified_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Form</title>
+</head>
+<body>
+    <h1>Unified Form</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Upload PDF</h2>
+        {{ pdf_form.as_p }}
+        <button type="submit" name="upload_pdf">Upload PDF</button>
+
+        <h2>Summarize Text</h2>
+        {{ summarize_form.as_p }}
+        <button type="submit" name="summarize_text">Summarize</button>
+
+        <h2>Ask a Question</h2>
+        {{ question_form.as_p }}
+        <button type="submit" name="ask_question">Ask</button>
+    </form>
+
+    {% if text %}
+        <h3>Extracted Text:</h3>
+        <p>{{ text }}</p>
+    {% endif %}
+
+    {% if summary %}
+        <h3>Summary:</h3>
+        <p>{{ summary }}</p>
+    {% endif %}
+
+    {% if answer %}
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
